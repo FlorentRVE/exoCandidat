@@ -8,20 +8,24 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use App\Service\APIGOUVService;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\EntreprisesReuRepository;
 
-// the name of the command is what users type after "php bin/console"
+// Le nom de la commande vient après "php bin/console"
 #[AsCommand(
     name: 'app:getapi',
-    description: 'Get data from API.',
+    description: 'Upload des données dans la BDD',
     hidden: false,
     aliases: ['app:get-api']
     )]
 class APIcommand extends Command
 {
-    protected static $defaultDescription = 'Get data from API'; //Description de la commande
+    protected static $defaultDescription = 'Upload des données dans la BDD'; //Description de la commande
 
     public function __construct(
-        private APIGOUVService $APIGOUVService, // Récupération du service
+        private APIGOUVService $APIGOUVService, // Récupération du service et modules pour gestion entité
+        private EntityManagerInterface $entityManager,
+        private EntreprisesReuRepository $entreprise
     ){
         parent::__construct();
     }
@@ -31,7 +35,7 @@ class APIcommand extends Command
     {
 
         // appel service
-        $this->APIGOUVService->getResult();
+        $this->APIGOUVService->uploadResult($this->entreprise, $this->entityManager);
 
         $output->writeln("Résultats de l'API uploadé dans la BDD");
 

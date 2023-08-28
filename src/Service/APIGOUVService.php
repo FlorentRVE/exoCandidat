@@ -5,7 +5,6 @@ namespace App\Service;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use App\Repository\EntreprisesReuRepository;
 use App\Entity\EntreprisesReu;
-use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
  
 class APIGOUVService
