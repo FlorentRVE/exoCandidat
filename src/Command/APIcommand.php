@@ -30,7 +30,7 @@ class APIcommand extends Command
         parent::__construct();
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) // Execution de la fonction du service
+    protected function execute(InputInterface $input, OutputInterface $output): int // Execution de la fonction du service
 
     {
 

@@ -6,7 +6,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 use App\Repository\EntreprisesReuRepository;
 use App\Entity\EntreprisesReu;
 use Doctrine\ORM\EntityManagerInterface;
- 
+use Error;
+
 class APIGOUVService
 {
  
@@ -21,6 +22,14 @@ class APIGOUVService
             'GET',
             'https://recherche-entreprises.api.gouv.fr/search?categorie_entreprise=PME%2CETI&departement=974&region=04&per_page=25',
         );
+
+        // Gestion des erreurs
+        $statusCode = $response->getStatusCode();
+        // $statusCode = 200
+
+        if (200 !== $statusCode) {
+            throw new Error('Une erreur est survenue', $statusCode);
+        }
 
         $content = $response->getContent();
         // $content = '{"id":521583, "name":"symfony-docs", ...}'
@@ -60,6 +69,14 @@ class APIGOUVService
             'GET',
             'https://recherche-entreprises.api.gouv.fr/search?categorie_entreprise=PME%2CETI&departement=974&region=04&per_page=25',
         );
+
+        // Gestion des erreurs
+        $statusCode = $response->getStatusCode();
+        // $statusCode = 200
+
+        if (200 !== $statusCode) {
+            throw new Error('Une erreur est survenue', $statusCode);
+        }
 
         $content = $response->getContent();
         // $content = '{"id":521583, "name":"symfony-docs", ...}'
