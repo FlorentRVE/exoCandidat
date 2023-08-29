@@ -38,14 +38,33 @@ class APIGOUVService
 
         $content = $content["results"];
 
-        $nameList=[];
+        // $nameList=[];
+
+        // foreach($content as $value) {
+        //     array_push($nameList, $value["nom_complet" ]);
+        // }
+
+        $boiteList=[];
 
         foreach($content as $value) {
-            array_push($nameList, $value["nom_complet" ]);
+
+            $name= $value["nom_complet" ];
+            $dirigeant= $value["dirigeants" ];
+
+            $entreprise = [];
+            $entreprise = ['nom_entreprise' => $name, 'dirigeant' => $dirigeant];
+
+            if(isset($dirigeant[0])) {
+                $entreprise = ['nom_entreprise' => $name, 'dirigeant' => $dirigeant[0]];
+            } else {
+                $entreprise = ['nom_entreprise' => $name, 'dirigeant' => ''];
+            }
+
+            array_push($boiteList, $entreprise);
         }
         
 
-        return $nameList;
+        return $boiteList;
     }
 
     // Upload des datas dans la BDD
@@ -89,9 +108,14 @@ class APIGOUVService
 
         foreach($content as $value) {
 
-            $name= $value["nom_complet" ];            
+            $name= $value["nom_complet" ];
+            $dirigeant=$value["dirigeants" ];            
             $entreprise = new EntreprisesReu();
             $entreprise->setNom($name);
+
+            if(isset($dirigeant[0])) {
+            $entreprise->setDirigeant($dirigeant[0]);
+            }
 
             // tell Doctrine you want to (eventually) save the Product (no queries yet)
             $entityManager->persist($entreprise);
