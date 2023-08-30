@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemple de Template Twig</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        form {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des Dirigeants</h1>
+
+    <form action="#" method="get">
+        <label for="search">Rechercher une entreprise : </label>
+        <input type="text" id="search" name="search" value="{{ searchTerm }}">
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Nom de l'Entreprise</th>
+            <th>Dirigeants</th>
+        </tr>
+        {% for item in data %}
+            <tr>
+                <td><strong>{{ item.Nom }}</strong></td>
+                <td>
+                    {% if item.Dirigeant is not empty %}
+                        <ul>
+                            {% for Dirigeant in item.Dirigeant %}
+                                <li>{{ Dirigeant }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        Aucune information sur les dirigeants.
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

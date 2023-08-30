@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Service\APIGOUVService;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EntreprisesReuRepository;
+use Symfony\Component\HttpFoundation\Request;
 
 class APIController extends AbstractController
 {
@@ -23,11 +24,38 @@ class APIController extends AbstractController
     public function getData(): Response
     {
         dd($this->apiGouvService->getResult());
-
-        return $this->render('templates/base.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
     }
+
+
+
+// ...
+
+#[Route('/tableau', name: 'app_tableau')]
+public function getTableau(Request $request, EntreprisesReuRepository $entreprise): Response
+{
+    $searchTerm = $request->query->get('search');
+    
+    $dataAll = $entreprise->findAll();
+    $data = [];
+
+    foreach ($dataAll as $item) {
+        // Si le terme de recherche est vide ou si le nom de l'entreprise contient le terme de recherche
+        // on ajoute l'entreprise à la liste à afficher
+        if (empty($searchTerm) || stripos($item->getNom(), $searchTerm) !== false) {
+            $data[] = [
+                'Nom' => $item->getNom(),
+                'Dirigeant' => $item->getDirigeant(),
+            ];
+        }
+    }
+
+    return $this->render('display.html.twig', [
+        'controller_name' => 'APIController',
+        'data' => $data,
+        'searchTerm' => $searchTerm,
+    ]);
+}
+
 
     #[Route('/upload', name: 'app_upload')] // Upload des datas dans la BDD
     public function uploadData(EntreprisesReuRepository $entreprise, EntityManagerInterface $entityManager): Response
