@@ -5,7 +5,7 @@
 [![PHP](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)](https://www.php.net/manual/fr/intro-whatis.php)
 
 
-Exercice à effectuer durant une journée d'essai pendant la recherche d'alternance. Le candidat doit créer un service Symfony qui interagit avec un API externe pour récupérer des données.
+Exercice à effectuer durant une journée d'essai pendant la recherche d'alternance. La mission était de créer un service Symfony qui interagit avec un API externe pour récupérer des données.
 
 ## Sommaire
 
