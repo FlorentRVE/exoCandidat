@@ -5,14 +5,13 @@
 [![PHP](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)](https://www.php.net/manual/fr/intro-whatis.php)
 
 
-Exercice à effectuer durant une journée d'essai pendant la recherche d'alternance. La mission était de créer un service Symfony qui interagit avec un API externe pour récupérer des données.
+Exercice à effectuer durant une journée d'essai pendant la recherche d'alternance. La mission était de créer un service Symfony qui interagit avec un API externe pour récupérer des données. La branche "Main" étant le code produit seulement le jour du test. Retrouvez le code mis à jour par la suite dans la branche "Develop"
 
 ## Sommaire
 
 - [Aperçu](#aperçu)
   - [Le projet](#le-projet)
   - [Screenshot](#screenshot)
-  - [Liens](#liens)
 - [Méthode](#méthode)
   - [Outils](#outils)
 
@@ -32,10 +31,6 @@ Les objectifs de l'exercice:
 ### Screenshot
 
 ![screenshot](/screenshot.jpg)
-
-### Liens
-
-- Solution URL: [GitHub repo](https://github.com/FlorentRVE/exoCandidat)
 
 ## Méthode
 
